@@ -135,7 +135,7 @@ jobs:
             CLUSTER_TYPE=gke
           fi
           IS_CKS=$(echo "${{ github.workflow }}" | grep -i "\cks" || true)$(echo "${{ inputs.standup_scenario }}" | grep -i "cks" || true)
-          if [[ ! -z $IS_GKE ]]; then
+          if [[ ! -z $IS_CKS ]]; then
             echo "Targetting hosted runners (non-OpenShift)"
             RUNNERS_JSON_LIST='["ubuntu-latest"]'
             CLUSTER_TYPE=gke
