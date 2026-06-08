@@ -605,6 +605,11 @@ jobs:
             echo -n "$lkcmd" > ~/work/lkcmd.txt
             eval $lkcmd
             cat ~/work/llm-d-benchmark/llm-d-benchmark/config/scenarios/$LLMDBENCH_CICD_SCENARIO_DIR/$LLMDBENCH_CICD_SCENARIO.yaml | yq '.scenario[0].kustomize.guideVariableOverrides.INFRA_PROVIDER'
+            echo "### Setting \"REPO_ROOT\" to \"$HOME/work/llm-d/llm-d\""
+            lkcmd="yq -i \".scenario[0].kustomize.guideVariableOverrides.REPO_ROOT = \\\"$HOME/work/llm-d/llm-d\\\"\" ~/work/llm-d-benchmark/llm-d-benchmark/config/scenarios/$LLMDBENCH_CICD_SCENARIO_DIR/$LLMDBENCH_CICD_SCENARIO.yaml"
+            echo -n "; $lkcmd" >> ~/work/lkcmd.txt
+            eval $lkcmd
+            cat ~/work/llm-d-benchmark/llm-d-benchmark/config/scenarios/$LLMDBENCH_CICD_SCENARIO_DIR/$LLMDBENCH_CICD_SCENARIO.yaml | yq '.scenario[0].kustomize.guideVariableOverrides.INFRA_PROVIDER'
             if [[ ! -z $LLMDBENCH_CICD_CONNECTOR ]]; then
             echo "### Setting \"CONNECTOR\" to \"$LLMDBENCH_CICD_CONNECTOR\""
               lkcmd="yq -i \".scenario[0].kustomize.guideVariableOverrides.CONNECTOR = \\\"$LLMDBENCH_CICD_CONNECTOR\\\"\" ~/work/llm-d-benchmark/llm-d-benchmark/config/scenarios/$LLMDBENCH_CICD_SCENARIO_DIR/$LLMDBENCH_CICD_SCENARIO.yaml"
