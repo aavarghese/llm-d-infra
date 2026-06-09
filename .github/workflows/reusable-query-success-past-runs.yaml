@@ -26,6 +26,11 @@ jobs:
       TWQ: ${{ inputs.time_window_query || '5' }}
       BQ: ${{ inputs.branch_query || 'main' }}
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6.0.3
+        with:
+          fetch-depth: 0
+
       - name: Count successes on the past days
         env:
           GH_TOKEN: ${{ github.token }}
